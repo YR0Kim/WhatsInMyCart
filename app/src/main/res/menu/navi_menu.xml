@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/cart"
+        android:title="장바구니"
+        android:icon="@drawable/cart" />
+
+    <item
+        android:id="@+id/list"
+        android:title="구매목록"
+        android:icon="@drawable/calender" />
+
+    <item
+        android:id="@+id/search"
+        android:title="검색"
+        android:icon="@drawable/search" />
+
+    <item
+        android:id="@+id/myMenu"
+        android:title="마이"
+        android:icon="@drawable/my" />
+
+</menu>
