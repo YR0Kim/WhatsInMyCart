@@ -1,6 +1,8 @@
 package com.example.whatsinmycart
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -23,6 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         setFragment(TAG_CART, CartFragment())
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayUseLogoEnabled(true)
+        binding.toolbar.navigationIcon?.setTint(Color.WHITE)
+
         binding.bNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.cart -> setFragment(TAG_CART, CartFragment())
@@ -33,6 +39,11 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        Log.d("kkang", "onSupportNavigateUp")
+        return super.onSupportNavigateUp()
     }
 
     private fun setFragment(tag: String, fragment: Fragment) {
