@@ -15,23 +15,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="587dp"
-        android:background="?attr/colorPrimary"
+        android:layout_marginBottom="650dp"
+        android:background="@drawable/stroke"
         android:elevation="4dp"
         app:layout_constraintBottom_toTopOf="@+id/bNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:titleTextColor="@color/white">
+        style="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@drawable/simplelogo" />
+
     </androidx.appcompat.widget.Toolbar>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bNavigationView"
@@ -47,5 +56,6 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:menu="@menu/navi_menu"
         tools:ignore="MissingConstraints" />
+    <!--app:layout_constraintBottom_toBottomOf="parent"를 추가해 nevigationView가 맨 밑에 위치-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

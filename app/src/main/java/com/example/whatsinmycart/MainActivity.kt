@@ -1,12 +1,16 @@
 package com.example.whatsinmycart
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.whatsinmycart.databinding.ActivityMainBinding
+import com.google.android.material.tabs.TabLayout
 
 private const val TAG_CART = "cart_fragment"
 private const val TAG_LIST = "list_fragment"
@@ -23,11 +27,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setFragment(TAG_CART, CartFragment())
-
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayUseLogoEnabled(true)
-        binding.toolbar.navigationIcon?.setTint(Color.WHITE)
+
+        setFragment(TAG_CART, CartFragment())
 
         binding.bNavigationView.setOnItemSelectedListener { item ->
             when(item.itemId) {
@@ -39,11 +41,6 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        Log.d("kkang", "onSupportNavigateUp")
-        return super.onSupportNavigateUp()
     }
 
     private fun setFragment(tag: String, fragment: Fragment) {
@@ -70,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         if (myMenu != null)
             fragTransaction.hide(myMenu)
 
+
         if (tag == TAG_CART) {
             if (cart != null)
                 fragTransaction.show(cart)
@@ -94,5 +92,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         fragTransaction.commitAllowingStateLoss()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.notify -> startActivity(Intent(this, NotifyActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

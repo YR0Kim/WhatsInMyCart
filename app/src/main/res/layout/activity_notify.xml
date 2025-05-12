@@ -7,4 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".NotifyActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/stroke"
+        android:elevation="4dp"
+        app:title="알림"
+        style="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints" >
+
+    </androidx.appcompat.widget.Toolbar>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
