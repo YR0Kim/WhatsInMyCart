@@ -14,11 +14,11 @@ class NotifyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityNotifyBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_notify)
+        setContentView(binding.root)
         title = "알림"
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.navigationIcon?.setTint(Color.WHITE)
     }
 }
