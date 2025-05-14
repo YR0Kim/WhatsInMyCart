@@ -36,7 +36,7 @@ class ListFragment : Fragment() {
         itemList.add(CardModel("  3월 31일", "커피", "디저트", "외 1건"))
 
         binding.listview.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = CardviewAdapter(itemList)
+        val adapter = ListviewAdapter(itemList)
         binding.listview.adapter = adapter
 
         return binding.root
@@ -45,13 +45,13 @@ class ListFragment : Fragment() {
 
 
 
-class CardviewAdapter(val items: MutableList<ListFragment.CardModel>) : RecyclerView.Adapter<CardviewAdapter.CardViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardviewAdapter.CardViewHolder {
+class ListviewAdapter(val items: MutableList<ListFragment.CardModel>) : RecyclerView.Adapter<ListviewAdapter.CardViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListviewAdapter.CardViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return CardViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: CardviewAdapter.CardViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListviewAdapter.CardViewHolder, position: Int) {
         holder.bindItems(items[position])
     }
 
