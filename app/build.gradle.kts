@@ -48,4 +48,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.github.prolificinteractive:material-calendarview:2.0.1")
 }
