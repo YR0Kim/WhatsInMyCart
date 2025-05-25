@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/main"
     android:orientation="vertical"
-    android:padding="30dp">
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/title_label"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="분 류"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1" />
         <Spinner
             android:id="@+id/category_combobox"
@@ -49,7 +49,7 @@
             android:layout_height="wrap_content"
             android:text="품 목"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/name_edit"
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:text="수 량"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1" />
         <EditText
             android:id="@+id/quantity_edit"
@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:text="금 액"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1" />
         <EditText
             android:id="@+id/amount_edit"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:text="구입 일자"
             android:textStyle="bold"/>
 
@@ -141,13 +141,12 @@
             android:layout_height="wrap_content"
             android:text="충동 구매"
             android:textStyle="bold"
-            android:gravity="center"
-            android:layout_weight="1" />
+            android:layout_marginLeft="10dp" />
         <CheckBox
             android:id="@+id/outwill_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="7" />
+            android:layout_marginLeft="17dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -161,7 +160,7 @@
             android:layout_height="wrap_content"
             android:text="메 모"
             android:textStyle="bold"
-            android:gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1" />
         <EditText
             android:id="@+id/memo_edit"

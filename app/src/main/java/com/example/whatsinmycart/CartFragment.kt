@@ -36,7 +36,7 @@ class CartFragment : DialogFragment() {
 
         // 아이템 클릭 리스너
 
-        adapter.itemClickListener = object : CartAdapter.OnItemClickLIstener {
+        adapter.itemClickListener = object : CartAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 val dialog = buyFragment()
                 dialog.show(requireActivity().supportFragmentManager, "buyFragment")
@@ -50,11 +50,11 @@ class CartFragment : DialogFragment() {
 class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 class CartAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    interface OnItemClickLIstener {
+    interface OnItemClickListener {
         fun onItemClick(position: Int) {}
     }
 
-    var itemClickListener: OnItemClickLIstener? = null
+    var itemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         CartViewHolder(CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))

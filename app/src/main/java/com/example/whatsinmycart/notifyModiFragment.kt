@@ -7,24 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.example.whatsinmycart.databinding.FragmentAddBinding
+import com.example.whatsinmycart.databinding.FragmentNotifyModiBinding
 
-class addFragment : DialogFragment() {
+class notifyModiFragment : DialogFragment() {
 
-    lateinit var binding: FragmentAddBinding
+    lateinit var binding: FragmentNotifyModiBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddBinding.inflate(inflater, container, false)
+        binding = FragmentNotifyModiBinding.inflate(inflater, container, false)
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
 
-        binding.submitBtn.setOnClickListener{
+        binding.modifyBtn.setOnClickListener {
             dismiss()
         }
-        binding.cancelBtn.setOnClickListener{
+
+        binding.deleteBtn.setOnClickListener {
             dismiss()
         }
 

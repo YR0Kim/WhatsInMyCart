@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyMenuFragment">
+    android:layout_marginTop="110dp"
+    android:id="@+id/main"
+    android:orientation="vertical" >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="마이 메뉴 화면" />
+        android:layout_height="wrap_content"
+        android:text="월별 소비 통계"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="15dp"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2025-05"
+        android:textSize="16dp"
+        android:gravity="center"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="라디오 버튼 자리"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_margin="10dp" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" />
+
+</LinearLayout>

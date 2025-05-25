@@ -22,7 +22,6 @@
             android:textSize="18sp"
             android:textStyle="bold"/>
 
-
         <TextView
             android:id="@+id/shopping_data1"
             android:layout_width="match_parent"
