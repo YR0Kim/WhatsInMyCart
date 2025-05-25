@@ -47,6 +47,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // 카드 형태 리스트 출력
     implementation("androidx.cardview:cardview:1.0.0")
+    // 달력 출력
     implementation("com.github.prolificinteractive:material-calendarview:2.0.1")
+    // 그래프 출력
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

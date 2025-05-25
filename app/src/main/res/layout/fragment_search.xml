@@ -6,16 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
+    <LinearLayout
+        android:id="@+id/search_zone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/search_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="품목을 입력하세요."
+            android:layout_weight="6" />
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="155dp"
+        android:background="@color/black"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="750dp"
-        android:background="@color/white">
+        android:layout_height="445dp"
+        android:layout_marginTop="300dp"
+        android:background="@color/lavender">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchview"
             android:layout_width="410dp"
-            android:layout_height="650dp"
-            android:layout_marginTop="95dp"
+            android:layout_height="440dp"
             android:layout_weight="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

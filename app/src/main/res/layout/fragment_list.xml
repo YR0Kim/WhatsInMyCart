@@ -6,21 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="750dp"
-        android:background="@color/white">
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="410dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp"
+        android:layout_weight="1"
+        android:padding="12dp"
+        android:theme="@style/CalenderViewCustom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+        app:mcv_leftArrow="@drawable/ic_arrow_back"
+        app:mcv_rightArrow="@drawable/ic_arrow_forward"
+        app:mcv_selectionMode="single"
+        app:mcv_selectionColor="#00F"
+        app:mcv_showOtherDates="all"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listview"
-            android:layout_width="410dp"
-            android:layout_height="650dp"
-            android:layout_marginTop="95dp"
-            android:layout_weight="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

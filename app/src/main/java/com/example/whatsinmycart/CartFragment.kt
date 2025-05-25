@@ -2,17 +2,17 @@ package com.example.whatsinmycart
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DividerItemDecoration
+import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whatsinmycart.databinding.CartItemBinding
 import com.example.whatsinmycart.databinding.FragmentCartBinding
 
-class CartFragment : Fragment() {
+class CartFragment : DialogFragment() {
 
     private lateinit var binding: FragmentCartBinding
 
@@ -21,26 +21,41 @@ class CartFragment : Fragment() {
 
         val datas = mutableListOf<String>()
 
-        for (i in 1 .. 50) {
+        for (i in 1 .. 10) {
             datas.add("살 것 $i")
         }
         binding.cartview.layoutManager = LinearLayoutManager(requireContext())
         val adapter = CartAdapter(datas)
         binding.cartview.adapter = adapter
 
+
         binding.plusButton.setOnClickListener {
-            datas.add("new data")
-            adapter.notifyDataSetChanged()
+            val dialog = addFragment()
+            dialog.show(requireActivity().supportFragmentManager, "addFragment")
+        }
+
+        // 아이템 클릭 리스너
+
+        adapter.itemClickListener = object : CartAdapter.OnItemClickLIstener {
+            override fun onItemClick(position: Int) {
+                val dialog = buyFragment()
+                dialog.show(requireActivity().supportFragmentManager, "buyFragment")
+            }
         }
 
         return binding.root
     }
-
 }
 
 class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
 
 class CartAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    interface OnItemClickLIstener {
+        fun onItemClick(position: Int) {}
+    }
+
+    var itemClickListener: OnItemClickLIstener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         CartViewHolder(CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
@@ -52,8 +67,9 @@ class CartAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<Recycle
         val binding = (holder as CartViewHolder).binding
 
         binding.itemData.text = datas[position]
-        binding.itemData.setOnClickListener {
+        binding.itemData.setOnClickListener { isChecked ->
             Log.d("kkang", "Item Click: $position")
+            itemClickListener?.onItemClick(position)
         }
     }
 
