@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#6866BA</color>
+    <color name="enabled_date_color">#D7D7D9</color>
+    <color name="selected_date_color">#A4A3D5</color>
 </resources>

@@ -16,7 +16,8 @@
     </style>
 
     <!-- 캘린더의 날짜(Day)의 스타일 설정 -->
-    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+    <style name="CalenderViewDateCustomText"
+        parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
@@ -30,6 +31,8 @@
     <style name="CalendarWidgetHeader">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:background">@color/lavender</item>
         <item name="fontFamily">@font/roboto_regular</item>
     </style>
+
 </resources>

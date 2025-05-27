@@ -1,12 +1,14 @@
 package com.example.whatsinmycart
 
-import android.R.attr.data
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.NumberPicker
+import androidx.appcompat.app.AlertDialog
 import com.example.whatsinmycart.databinding.FragmentMyMenuBinding
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -24,6 +26,58 @@ class MyMenuFragment : Fragment() {
         binding = FragmentMyMenuBinding.inflate(inflater, container, false)
         binding.pieChart.setUsePercentValues(true)
 
+        // 월 설정 버튼으로 넘버피커 다이얼로그 출력
+        binding.selectMonthBtn.setOnClickListener {
+            val dialog = AlertDialog.Builder(requireContext()).create()
+            val edialog: LayoutInflater = LayoutInflater.from(requireContext())
+            val dView: View = edialog.inflate(R.layout.dialog_datepicker, null)
+
+            val year: NumberPicker = dView.findViewById(R.id.year_picker)
+            val month: NumberPicker = dView.findViewById(R.id.month_picker)
+            val saveBtn: Button = dView.findViewById(R.id.saveBtn_np)
+            val cancelBtn: Button = dView.findViewById(R.id.cancelBtn_np)
+
+            // 순환 설정
+            year.wrapSelectorWheel = false
+            month.wrapSelectorWheel = true
+
+            // editText 설정 해제
+            year.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+            month.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+
+            // year 범위 설정
+            year.minValue = 2024
+            year.maxValue = 2040
+
+            // month 범위 설정
+            month.minValue = 1
+            month.maxValue = 12
+
+            // 입력 버튼 클릭 이벤트
+            saveBtn.setOnClickListener {
+
+                if(month.value < 10) {
+                    binding.selectMonth.text = (year.value).toString() + " - 0" + (month.value).toString()
+                } else {
+                    binding.selectMonth.text = (year.value).toString() + " - " + (month.value).toString()
+                }
+
+                dialog.dismiss()
+                dialog.cancel()
+            }
+
+            // 취소 버튼 클릭 이벤트
+            cancelBtn.setOnClickListener {
+                dialog.dismiss()
+                dialog.cancel()
+            }
+
+            dialog.setView(dView)
+            dialog.create()
+            dialog.show()
+        }
+
+        // 파이 차트 설정
         val dataList = ArrayList<PieEntry>()
 
         var tempTotalCategory1 = 145000f

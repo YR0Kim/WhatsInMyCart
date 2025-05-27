@@ -44,13 +44,20 @@
             android:text="날 짜"
             android:textSize="16dp"
             android:textStyle="bold"
-            android:layout_weight="1" />
+            android:layout_weight="1.5" />
         <TextView
             android:id="@+id/modify_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="5.5"
-            android:text="1970-01-01"/>
+            android:layout_weight="5"
+            android:layout_marginLeft="10dp"
+            android:text=""/>
+        <Button
+            android:id="@+id/date_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택"
+            android:layout_weight="0.2" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"

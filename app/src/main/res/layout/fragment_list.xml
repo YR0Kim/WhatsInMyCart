@@ -6,25 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ListFragment">
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+    <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="410dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:layout_weight="1"
         android:padding="12dp"
         android:theme="@style/CalenderViewCustom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
-        app:mcv_headerTextAppearance="@style/CalendarWidgetHeader"
+        app:mcv_firstDayOfWeek="sunday"
         app:mcv_leftArrow="@drawable/ic_arrow_back"
         app:mcv_rightArrow="@drawable/ic_arrow_forward"
         app:mcv_selectionMode="single"
-        app:mcv_selectionColor="#00F"
+        app:mcv_showOtherDates="all"
+        app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>-->
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+        app:mcv_selectionMode="single"
         app:mcv_showOtherDates="all"
         app:mcv_weekDayTextAppearance="@style/CalenderViewWeekCustomText"/>
+
+
+<!--
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintHorizontal_bias="0.488"
+        android:layout_marginTop="8dp" />-->
 
 
 </FrameLayout>

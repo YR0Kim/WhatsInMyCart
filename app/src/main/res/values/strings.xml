@@ -25,4 +25,5 @@
         <item>11월</item>
         <item>12월</item>
     </string-array>
+    <string name="main_search_hint">검색할 품목을 입력하세요</string>
 </resources>
