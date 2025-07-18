@@ -20,59 +20,53 @@ import javax.sql.DataSource
 class CartFragment : DialogFragment() {
 
     private lateinit var binding: FragmentCartBinding
+    private val datas = mutableListOf<String>()
+    private lateinit var adapter: CartAdapter
 
-    private var itemName:  String? = null
-    private var itemIndex: Int? = null
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentCartBinding.inflate(inflater, container, false)
 
-    companion object {
-        fun newInstance(text: String, index: Int): addFragment {
-            val fragment = addFragment()
-            val args = Bundle()
-            args.putString("text", text)
-            args.putInt("index", index)
-            fragment.arguments = args
-            return fragment
+        setupRecyclerView()
+        setupListeners()
+        observeAddItemResult()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        adapter = CartAdapter(datas).apply {
+            itemClickListener = object : CartAdapter.OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    buyFragment().show(parentFragmentManager, "buyFragment")
+                }
+
+                override fun onEditClick(position: Int, item: String) {
+                    addFragment.newInstance(item, position)
+                        .show(parentFragmentManager, "editItem")
+                }
+
+                override fun onDeleteClick(position: Int) {
+                    datas.removeAt(position)
+                    adapter.notifyItemRemoved(position)
+                }
+            }
+        }
+
+        binding.cartview.layoutManager = LinearLayoutManager(requireContext())
+        binding.cartview.adapter = adapter
+    }
+
+    private fun setupListeners() {
+        binding.plusButton.setOnClickListener {
+            addFragment().show(parentFragmentManager, "addFragment")
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentCartBinding.inflate(inflater, container, false)
-
-        val datas = mutableListOf<String>()
-
-        binding.cartview.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = CartAdapter(datas)
-        binding.cartview.adapter = adapter
-
-        // 추가 버튼 클릭
-        binding.plusButton.setOnClickListener {
-            val dialog = addFragment()
-            dialog.show(requireActivity().supportFragmentManager, "addFragment")
-        }
-
-        // 아이템 클릭 리스너
-        adapter.itemClickListener = object : CartAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val dialog = buyFragment()
-                dialog.show(requireActivity().supportFragmentManager, "buyFragment")
-            }
-
-            override fun onEditClick(position: Int, item: String) {
-                val dialog = addFragment.newInstance(item, position)
-                dialog.show(parentFragmentManager, "editItem")
-            }
-
-            override fun onDeleteClick(position: Int) {
-                datas.removeAt(position)
-                adapter.notifyItemRemoved(position)
-            }
-        }
-
-        // FragmentResultListener 등록
+    private fun observeAddItemResult() {
         parentFragmentManager.setFragmentResultListener("add_item_request", viewLifecycleOwner) { _, bundle ->
-
             val index = bundle.getInt("item_index", -1)
-
             bundle.getString("item_key")?.let { newItem ->
                 if (index >= 0) {
                     datas[index] = newItem
@@ -82,35 +76,36 @@ class CartFragment : DialogFragment() {
                     adapter.notifyItemInserted(datas.size - 1)
                 }
             }
-
         }
-
-        return binding.root
     }
-
 }
+
 
 class CartViewHolder(val binding: CartItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-class CartAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class CartAdapter(private val datas: MutableList<String>) : RecyclerView.Adapter<CartViewHolder>() {
+
     interface OnItemClickListener {
         fun onItemClick(position: Int)
         fun onEditClick(position: Int, item: String)
         fun onDeleteClick(position: Int)
     }
+
     var itemClickListener: OnItemClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        CartViewHolder(CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        val binding = CartItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CartViewHolder(binding)
+    }
 
     override fun getItemCount(): Int = datas.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding = (holder as CartViewHolder).binding
+    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+        val binding = holder.binding
+        val item = datas[position]
 
-        binding.itemData.text = datas[position]
+        binding.itemData.text = item
 
-        // 체크박스 클릭 시 buyFragment 호출
         binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 itemClickListener?.onItemClick(position)
@@ -118,19 +113,16 @@ class CartAdapter(val datas: MutableList<String>) : RecyclerView.Adapter<Recycle
             }
         }
 
-        // 길게 누르면 수정/삭제 다이얼로그 표시
         binding.itemData.setOnLongClickListener {
             AlertDialog.Builder(holder.itemView.context)
                 .setTitle("작업 선택")
                 .setItems(arrayOf("수정", "삭제")) { _, which ->
                     when (which) {
-                        0 -> itemClickListener?.onEditClick(position, datas[position])
+                        0 -> itemClickListener?.onEditClick(position, item)
                         1 -> itemClickListener?.onDeleteClick(position)
                     }
-                }
-                .show()
-            true // 롱클릭 이벤트 소비
+                }.show()
+            true
         }
     }
-
 }
